@@ -15,8 +15,8 @@ ls -1 $RAW_FOLDER/*.fastq.gz | \
     while read i
     do
         echo $i
-        java -Xmx160G -jar $TRIMMOMATIC_PROGRAM PE \
-            -threads 20 \
+        java -Xmx75G -jar $TRIMMOMATIC_PROGRAM PE \
+            -threads 10 \
             -phred33 \
             "$i"R1.fastq.gz \
             "$i"R2.fastq.gz \
@@ -34,6 +34,3 @@ ls -1 $RAW_FOLDER/*.fastq.gz | \
 # Transfer trimmed files to $TRIMMED_FOLDER folder
 mv $RAW_FOLDER/*single* $TRIMMED_FOLDER
 mv $RAW_FOLDER/*paired* $TRIMMED_FOLDER
-
-# Indicate that the trimming is done
-touch finished.01_trimming
