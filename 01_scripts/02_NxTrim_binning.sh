@@ -12,10 +12,10 @@ ls -1 $TRIMMED_FOLDER/*.fastq.gz | \
     sort -u | \
     while read i
     do
-       echo $i
+	 echo $i
 	$NXTRIM_PROGRAM \
 		-1 "$i"R1.paired.fastq.gz \
 		-2 "$i"R2.paired.fastq.gz \
-		-O $BINNED_FOLDER/ \
+		-O "$i" \
 		--justmp
     done
