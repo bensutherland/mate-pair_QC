@@ -19,3 +19,7 @@ ls -1 $TRIMMED_FOLDER/*.fastq.gz | \
 		-O "$i" \
 		--justmp
     done
+
+# transfer trimmed files to $BINNED_FOLDER
+mv $TRIMMED_FOLDER/*.mp.fastq.gz $BINNED_FOLDER
+mv $TRIMMED_FOLDER/*.unknown.fastq.gz $BINNED_FOLDER
