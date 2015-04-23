@@ -11,14 +11,8 @@ RG[1]='@RG\tID:lib208\tSM:lib208\tPL:Illumina'
 RG[2]='@RG\tID:lib209\tSM:lib209\tPL:Illumina'
 RG[3]='@RG\tID:lib210\tSM:lib210\tPL:Illumina'
 
-# unzip fasta
-# gunzip -c /project/lbernatchez/drobo/users/bensuth/00_resources/Ssa_ASM_3.6.fasta.gz > /project/lbernatchez/drobo/users/bensuth/00_resources/Ssa_ASM_3.6.fasta
-
 #Create a shell variable to store the location of our reference transcriptome
 REFERENCE=/project/lbernatchez/drobo/users/bensuth/00_resources/Ssa_ASM_3.6.fasta
-
-#Index reference transcriptome
-# bwa index $REFERENCE
 
 #Map the reads
 for i in 1 2 3
