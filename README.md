@@ -10,6 +10,13 @@ valuable tools that have been developed by other groups (see Requires below)
 
 # mate_pair-QC
 Quality trim mate pairs, bin by conformation MP/PE/Unkn, align to reference then estimate insert size
+## overview:
+  1) Trim for quality  
+  2) Separate mate-pairs based on adapter presence and position  
+  3) index reference with bwa  
+  4) align mate-pairs against reference  
+  5) evaluate your mate-pair libraries  
+
 Requires the following:  
 `Trimmomatic`   http://www.usadellab.org/cms/?page=trimmomatic  
 `NxTrim`        https://github.com/sequencing/NxTrim  
