@@ -2,6 +2,12 @@ mate-pair QC
 Version 0.1  
 2015-04-24
 
+### Disclaimer
+This pipeline is made available **with no waranty of usefulness of any kind**.
+It has been put together to improve the quality control of mate-pair library
+insert sizes, and to improve the use of mate-pairs for scaffolding. It uses
+valuable tools that have been developed by other groups (see Requires below)
+
 # mate_pair-QC
 Quality trim mate pairs, bin by conformation MP/PE/Unkn, align to reference then estimate insert size
 Requires the following:  
