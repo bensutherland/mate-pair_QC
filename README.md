@@ -1,4 +1,4 @@
-# mate-pair QC
+mate-pair QC
 Version 0.1  
 2015-04-24
 
@@ -96,4 +96,4 @@ On Katak:
 qsub 01_scripts/jobs/04_estInsertSizes_job.sh
 ```
 
-Enjoy! Hopefully your insert sizes are as you expect. 
+Enjoy! Hopefully your insert sizes are as you expect.
