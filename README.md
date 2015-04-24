@@ -7,8 +7,8 @@ Quality trim mate pairs, bin by conformation MP/PE/Unkn, align to reference then
 Requires the following:  
 `Trimmomatic`   http://www.usadellab.org/cms/?page=trimmomatic  
 `NxTrim`        https://github.com/sequencing/NxTrim  
-`samtools`      http://samtools.sourceforge.net  
 `bwa`           http://bio-bwa.sourceforge.net  
+`samtools`      http://samtools.sourceforge.net  
 `picard tools`  http://broadinstitute.github.io/picard/
 
 ## General comments
