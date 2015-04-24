@@ -13,9 +13,9 @@ Quality trim mate pairs, bin by conformation MP/PE/Unkn, align to reference then
 ## overview:
   1) Trim for quality  
   2) Separate mate-pairs based on adapter presence and position  
-  3) index reference with bwa  
-  4) align mate-pairs against reference  
-  5) evaluate your mate-pair libraries  
+  3) Index reference with bwa  
+  4) Align mate-pairs against reference  
+  5) Evaluate your mate-pair libraries  
 
 Requires the following:  
 `Trimmomatic`   http://www.usadellab.org/cms/?page=trimmomatic  
