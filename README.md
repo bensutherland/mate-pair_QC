@@ -1,36 +1,40 @@
-mate-pair QC
+mate-pair QC  
 Version 0.1  
 2015-04-24
 
 # mate_pair-QC
 Quality trim mate pairs, bin by conformation MP/PE/Unkn, align to reference then estimate insert size
-
-for more information on NxTrim see https://github.com/sequencing/NxTrim
+Requires the following:  
+`Trimmomatic`   http://www.usadellab.org/cms/?page=trimmomatic  
+`NxTrim`        https://github.com/sequencing/NxTrim  
+`samtools`      http://samtools.sourceforge.net
+`bwa`           http://bio-bwa.sourceforge.net
+`picard tools`  http://broadinstitute.github.io/picard/
 
 ## General comments
-Put raw data in 02_raw_data, and run all jobs from the main directory.
-Job files are specific to Katak at IBIS, but with some minor editing can be adapted for other computer clusters.
+Raw *fastq.gz mate-pair data in 02_raw_data; run all jobs from the main directory.
+Job files are specific to Katak at IBIS, but with some minor editing can be adapted for other servers.
 
-# Quality trim
-Trim raw data for quality, generates a 'paired' fastq file for each mate-pair library
+# Trim for quality
+Generates a 'paired' and 'single' fastq file for each mate-pair library  
 requires `Trimmomatic`
 
-Edit 01_scripts/01_trimming.sh by giving the path to `trimmomatic`
-
-Locally:
+Edit 01_scripts/01_trimming.sh by giving the path to `trimmomatic`  
+Run locally:
 ```
 01_scripts/01_trimming.sh
 ```
 
-On Katak: 
+Run on Katak: 
 ```
 qsub 01_scripts/jobs/01_trimming_job.sh
 ```
 
-# Separate mate-pairs based on adapter
-Bin quality trimmed paired mate-pairs for presence of adapter
-requires `NxTrim`
-Mate pairs can be in mate-pair conformation, paired-end conformation (i.e. shadow library) or unknown. `NxTrim` sorts each mate pair into these options by presence of connecting adapter in forward or reverse read.
+# Separate mate-pairs based on adapter presence and position
+Bin quality trimmed paired mate-pairs for presence of adapter  
+requires `NxTrim`  
+
+Mate pairs can be in mate-pair conformation, paired-end conformation (i.e. shadow library) or unknown. `NxTrim` sorts each mate pair into these options based on presence of connecting adapter in forward or reverse read.
 
 Edit 01_scripts/02_NxTrim_binning.sh by giving path to `nxtrim`
 
@@ -44,11 +48,11 @@ On Katak:
 qsub 01_scripts/jobs/02_NxTrim_binning_job.sh
 ```
 
-Normally mate-pairs are in RF directionality, but NxTrim will revcomp and output as FR (ready for alignment)
+Normally mate-pairs are in RF directionality, but NxTrim will revcomp and output as FR (ready for alignment)  
 The output of this will give *.mp.fastq.gz in 04_binned_mps
 
 # index reference with bwa
-Note: only need to do this once
+Note: only need to do this once  
 requires `bwa`
 
 Locally:
