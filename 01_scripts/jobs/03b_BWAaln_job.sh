@@ -8,5 +8,5 @@
 #$ -cwd
 #$ -S /bin/bash
 
-time ./01_scripts/03_BWAaln.sh
+time ./01_scripts/03b_BWAaln.sh
 
