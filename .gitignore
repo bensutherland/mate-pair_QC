@@ -1,3 +1,6 @@
+*.err
+*.out
+*~
 *.fastq
 *.fastq.gz
 *.fastq.gz*
