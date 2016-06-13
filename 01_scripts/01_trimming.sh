@@ -1,33 +1,40 @@
 #!/bin/bash
 # Cleaning and trimming data with trimmomatic
 
+# Load Trimmomatic
+module load trimmomatic/0.33
+
 # Global variables
 RAW_FOLDER="02_raw_data"
 TRIMMED_FOLDER="03_trimmed"
-VECTORS="./00_archive/univec_trimmomatic.fasta"
-TRIMMOMATIC_PROGRAM="/prg/trinityrnaseq/trinityrnaseq_r20140717/trinity-plugins/Trimmomatic-0.32/trimmomatic.jar"
+TRIMMOMATIC_PROGRAM="trimmomatic-0.33.jar"
+
+# User-specific variables
+# Set vector file depending on your input data files
+VECTORS="00_archive/illumina_nextera_mp_non-junction_adapters.fasta"
+
+# If not working in a SLURM environment, set trimmomatic path 
+# TRIMMOMATIC_PROGRAM="/prg/trinityrnaseq/trinityrnaseq_r20140717/trinity-plugins/Trimmomatic-0.32/trimmomatic.jar"
 
 # Filtering and trimming data with trimmomatic
-ls -1 $RAW_FOLDER/*.fastq.gz | \
-    perl -pe 's/R[12]\.fastq\.gz//' | \
-    grep -vE "paired|single" | \
-    sort -u | \
+ls -1 $RAW_FOLDER/*.fastq.gz |
+    perl -pe 's/R[12]\.fastq\.gz//' |
+    sort -u |
     while read i
     do
         echo $i
-        java -Xmx75G -jar $TRIMMOMATIC_PROGRAM PE \
+        $TRIMMOMATIC_PROGRAM PE \
             -threads 10 \
             -phred33 \
-            "$i"R1.fastq.gz \
-            "$i"R2.fastq.gz \
+            "$i"R1.fastq.gz "$i"R2.fastq.gz \
             "$i"R1.paired.fastq.gz \
             "$i"R1.single.fastq.gz \
             "$i"R2.paired.fastq.gz \
             "$i"R2.single.fastq.gz \
             ILLUMINACLIP:$VECTORS:2:30:10 \
-            SLIDINGWINDOW:20:30 \
-            LEADING:20 \
-            TRAILING:20 \
+            SLIDINGWINDOW:20:10 \
+            LEADING:10 \
+            TRAILING:10 \
             MINLEN:80
     done
 
