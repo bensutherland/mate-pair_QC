@@ -6,7 +6,7 @@ module load trimmomatic/0.33
 
 # Global variables
 RAW_FOLDER="02_raw_data"
-TRIMMED_FOLDER="03_trimmed"
+TRIMMED_FOLDER="03_trimmed_data"
 TRIMMOMATIC_PROGRAM="trimmomatic-0.33.jar"
 
 # User-specific variables
