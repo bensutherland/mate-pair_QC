@@ -1,12 +1,10 @@
 #!/bin/bash
-#$ -N estInsert
-#$ -M bensutherland7@gmail.com 
-#$ -m beas
-#$ -pe smp 3
-#$ -l h_vmem=20G
-#$ -l h_rt=6:00:00
-#$ -cwd
-#$ -S /bin/bash
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=bensutherland7@gmail.com
+#SBATCH -J estInsertSizes 
+#SBATCH --cpus-per-task=1
+#SBATCH --time=60:00:00
+#SBATCH --mem=20000
 
 time ./01_scripts/04_estInsertSizes.sh 
 
