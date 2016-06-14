@@ -1,15 +1,15 @@
 #!/bin/bash
-# Trimming mate-pair data with NxTrim
+# Binning mate-pair data with NxTrim
 
 # Global variables
 TRIMMED_FOLDER="03_trimmed_data"
 BINNED_FOLDER="04_binned_mps"
-NXTRIM_PROGRAM="/project/lbernatchez/drobo/users/bensuth/programs/NxTrim/nxtrim"
+NXTRIM_PROGRAM="/home/bensuth/programs/NxTrim/nxtrim"
 
-# binning mate-pair MI.Seq data within the trimmed folder
-ls -1 $TRIMMED_FOLDER/*.fastq.gz | \
-    perl -pe 's/R[12]\.paired\.fastq\.gz//' | \
-    sort -u | \
+# Bin trimmed mate-pair data
+ls -1 $TRIMMED_FOLDER/*paired.fastq.gz |
+    perl -pe 's/R[12]\.paired\.fastq\.gz//' |
+    sort -u |
     while read i
     do
 	 echo $i
