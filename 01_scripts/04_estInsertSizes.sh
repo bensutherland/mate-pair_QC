@@ -1,18 +1,19 @@
 #!/bin/bash
+# Estimate the insert size in the mate-pair library using the Picard Tool CollectInsertSizeMetrics
 
-ALIGNMENT_FOLDER="./05_aligned_to_ref"
-INSERT_PROGRAM="path/to/insert/program/CollectInsertSizeMetrics.jar"
+# Set variables
+ALIGNED_FOLDER="05_aligned_to_ref"
+PICARD="programs/picard-tools-2.4.1/picard.jar"
 
-
-# Filtering and trimming data with trimmomatic
-ls -1 $RAW_FOLDER/*.gz.bam | \
-    # perl -pe 's/R[12]\.fastq\.gz//' | \
-    sort -u | \
+# Estimate insert sizes
+ls -1 $ALIGNED_FOLDER/*sorted.bam |
+    sort -u |
     while read i
     do
-        echo $i
-        java -Xmx2G -jar $INSERT_PROGRAM \
-		HISTOGRAM_FILE="i"_insert_size_chart.pdf \
-		INPUT="i" \
-		OUTPUT="i".txt
-done 
+        echo "Estimating insert sizes for $i"
+        $PICARD CollectInsertSizeMetrics \
+		HISTOGRAM_FILE="$i"_insert_size.pdf \
+		INPUT="$i" \
+		OUTPUT="$i".txt \
+        INCLUDE_DUPLICATES=false # reads marked as duplicate will not be included in the histogram
+    done
