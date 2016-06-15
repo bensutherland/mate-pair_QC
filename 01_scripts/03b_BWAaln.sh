@@ -6,13 +6,13 @@ module load bwa/0.7.13
 module load samtools/1.3
 
 # Point to the reference
-REFERENCE="~/00_resources/GCA_000233375.4_ICSASG_v2_genomic.fna.gz"
+REFERENCE="/home/bensuth/00_resources/GCA_000233375.4_ICSASG_v2_genomic.fna.gz"
 
 # Set environment variables
 BINNED_FOLDER="04_binned_mps"
 
 # Map the binned reads
-ls -1 $BINNED_FOLDER/*mp.fastq.gz
+ls -1 $BINNED_FOLDER/*mp.fastq.gz |
     perl -pe 's/\.fastq\.gz//' |
     sort -u |
     while read i
